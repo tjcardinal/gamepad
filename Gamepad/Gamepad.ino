@@ -249,11 +249,15 @@ void loop() {
     report.buttons |= 1 << 7;
     report.R2Axis = 0xff;
   }
-  if (digitalRead(PIN_SELECT) == LOW) {
-    report.buttons |= 1 << 8;
-  }
-  if (digitalRead(PIN_START) == LOW) {
-    report.buttons |= 1 << 9;
+  if (digitalRead(PIN_SELECT) == LOW && digitalRead(PIN_START) == LOW) {
+    report.buttons |= 1 << 12;
+  } else {
+    if (digitalRead(PIN_SELECT) == LOW) {
+      report.buttons |= 1 << 8;
+    }
+    if (digitalRead(PIN_START) == LOW) {
+      report.buttons |= 1 << 9;
+    }
   }
 
   sendReport();
