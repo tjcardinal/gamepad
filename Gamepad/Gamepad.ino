@@ -6,20 +6,20 @@
 // I used an Arduino Pro Micro board, but it should work with any ATmega32U4-based board, just set the right pins below.
 // If you want L3/R3, the PS button or analog sticks, you'll need to add them.
 
-#define PIN_UP        2
-#define PIN_DOWN      3
-#define PIN_LEFT      4
-#define PIN_RIGHT     5
-#define PIN_CROSS     6
-#define PIN_CIRCLE    7
-#define PIN_TRIANGLE  8
-#define PIN_SQUARE    9
-#define PIN_L1        10
-#define PIN_L2        14
-#define PIN_R1        16
-#define PIN_R2        15
-#define PIN_SELECT    18
-#define PIN_START     19
+#define PIN_UP        6
+#define PIN_DOWN      8
+#define PIN_LEFT      9
+#define PIN_RIGHT     7
+#define PIN_CROSS     5
+#define PIN_CIRCLE    4
+#define PIN_TRIANGLE  15
+#define PIN_SQUARE    14
+#define PIN_L1        19
+#define PIN_L2        2
+#define PIN_R1        18
+#define PIN_R2        3
+#define PIN_SELECT    10
+#define PIN_START     16
 
 int stickMode = 0; // 0 = dpad, 1 = left stick
 
