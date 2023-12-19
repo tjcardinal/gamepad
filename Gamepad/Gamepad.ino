@@ -96,9 +96,9 @@ static const uint8_t hidReportDescriptor[] PROGMEM = {
 };
 
 typedef struct {
-  uint16_t buttons; // bits: 0 = square, 1 = cross, 2 = circle, 3 = triangle,
-                    // 4 = L1, 5 = R1, 6 = L2, 7 = R2, 8 = select, 9 = start, 12 = PS
-                    // 10 = L3?, 11 = R3?
+  uint16_t buttons; // bits: 0 = cross, 1 = circle, 2 = ???, 3 = square,
+                    // 4 = triangle, 5 = ???, 6 = L1, 7 = R1, 8 = L2, 9 = R2,
+		    // 10 = select, 11 = start, 12 = home
   uint8_t dpadHat; // 0 = up, 1 = up/right, 2 = right etc., 0x0f = neutral
   uint8_t leftStickXAxis;
   uint8_t leftStickYAxis;
@@ -217,46 +217,46 @@ void loop() {
        digitalRead(PIN_LEFT) == LOW,
        digitalRead(PIN_RIGHT) == LOW);
 
-  if (digitalRead(PIN_SQUARE) == LOW) {
+  if (digitalRead(PIN_CROSS) == LOW) {
     report.buttons |= 1 << 0;
     report.squareAxis = 0xff;
   }
-  if (digitalRead(PIN_CROSS) == LOW) {
+  if (digitalRead(PIN_CIRCLE) == LOW) {
     report.buttons |= 1 << 1;
     report.crossAxis = 0xff;
   }
-  if (digitalRead(PIN_CIRCLE) == LOW) {
-    report.buttons |= 1 << 2;
-    report.circleAxis = 0xff;
-  }
-  if (digitalRead(PIN_TRIANGLE) == LOW) {
+  if (digitalRead(PIN_SQUARE) == LOW) {
     report.buttons |= 1 << 3;
     report.triangleAxis = 0xff;
   }
-  if (digitalRead(PIN_L1) == LOW) {
+  if (digitalRead(PIN_TRIANGLE) == LOW) {
     report.buttons |= 1 << 4;
     report.L1Axis = 0xff;
   }
-  if (digitalRead(PIN_R1) == LOW) {
-    report.buttons |= 1 << 5;
-    report.R1Axis = 0xff;
-  }
-  if (digitalRead(PIN_L2) == LOW) {
+  if (digitalRead(PIN_L1) == LOW) {
     report.buttons |= 1 << 6;
     report.L2Axis = 0xff;
   }
-  if (digitalRead(PIN_R2) == LOW) {
+  if (digitalRead(PIN_R1) == LOW) {
     report.buttons |= 1 << 7;
+    report.R2Axis = 0xff;
+  }
+  if (digitalRead(PIN_L2) == LOW) {
+    report.buttons |= 1 << 8;
+    report.R2Axis = 0xff;
+  }
+  if (digitalRead(PIN_R2) == LOW) {
+    report.buttons |= 1 << 9;
     report.R2Axis = 0xff;
   }
   if (digitalRead(PIN_SELECT) == LOW && digitalRead(PIN_START) == LOW) {
     report.buttons |= 1 << 12;
   } else {
     if (digitalRead(PIN_SELECT) == LOW) {
-      report.buttons |= 1 << 8;
+      report.buttons |= 1 << 10;
     }
     if (digitalRead(PIN_START) == LOW) {
-      report.buttons |= 1 << 9;
+      report.buttons |= 1 << 11;
     }
   }
 
